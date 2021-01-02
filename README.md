@@ -5,7 +5,8 @@ Download TS: https://www.typescriptlang.org/index.html#download-links
 `npm install -g typescript`
 
 Compile:
-`tsc helloworld.ts`
+`tsc app.ts`
+With this it spits out the js file from ts file.
 
 Start:
 `npm install`
