@@ -1,14 +1,13 @@
-# understanding-ts
-**Understanding TypeScript - 2021**
+# Understanding TypeScript - 2021
+**Download TS:** https://www.typescriptlang.org/index.html#download-links
 
-Download TS: https://www.typescriptlang.org/index.html#download-links
 `npm install -g typescript`
 
-Compile:
+**Compile:**
 `tsc app.ts`
 With this it spits out the js file from ts file.
 
-Start:
+**Start:**
 `npm install`
 `npm start`
 
