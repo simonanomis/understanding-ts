@@ -1,18 +1,15 @@
-type Combinable = number | string;
-type ConversionDescriptor = 'as-number' | 'as-text';
-
-function combine(input1: Combinable, input2: Combinable, resultConversion: ConversionDescriptor) {
-    let result;
-    if(typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
-        result = +input1 + +input2; //each input with + is converted to a number befoe combine
-    } else {
-        result = input1.toString() + input2.toString();
-    }
-    return result;
+function add(n1: number, n2: number) {
+    return n1 + n2;
 }
 
-const combineAges = combine(20, 26, 'as-number');
-console.log(combineAges)
+function printResult(num: number) {
+    console.log('Result: ' + num);
+}
 
-const combineNames = combine('Ana', 'Ben', 'as-text');
-console.log(combineNames)
+printResult(add(5, 12))
+
+let combineValues: (x: number, y: number) => number;
+
+combineValues = add;
+
+console.log(combineValues(8, 8));
