@@ -32,3 +32,6 @@ With this it spits out the js file from ts file.
 18. Function types and callbacks
 19. The 'unknown' type
 20. The 'never' type
+
+
+**Run**: tsc OR tsc -w
