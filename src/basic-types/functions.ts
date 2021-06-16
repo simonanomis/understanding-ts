@@ -3,7 +3,7 @@ function add(n1: number, n2: number) {
 }
 
 function printSomeResult(num: number) {
-    console.log('Result: ' + num);
+    console.log('Result printSomeResult: ' + num);
 }
 
 function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
@@ -17,8 +17,8 @@ let combineValues: (x: number, y: number) => number;
 
 combineValues = add;
 
-console.log(combineValues(8, 8));
+console.log("combineValues"+combineValues(8, 8));
 
 addAndHandle(10, 20, (result) => {
-    console.log('Result: ' + result);
+    console.log('Result addAndHandle: ' + result);
 })

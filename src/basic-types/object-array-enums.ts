@@ -11,4 +11,4 @@ const person = {
     role: Role.ADMIN,
 };
 
-console.log(person.role);
+console.log("person.role", person.role);
