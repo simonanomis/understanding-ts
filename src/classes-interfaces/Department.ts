@@ -1,11 +1,9 @@
-class Department {
+abstract class Department {
     protected employees: string[] = [];
     static fiscalYear: string;
-    constructor(private readonly id: string, public name: string) {}
+    constructor(protected readonly id: string, public name: string) {}
 
-    describe(this: Department) {
-        console.log(`Department (${this.id}): ${this.name}`);
-    }
+    abstract describe(this: Department) : void;
 
     addEmployee(employee: string) {
         this.employees.push(employee);
@@ -26,6 +24,10 @@ class ITDepartment extends Department {
     constructor(id:string, public admins: string[]) {
         super(id, 'IT');
     }
+
+    describe(this: ITDepartment) {
+        console.log(`IT Department (${this.id}): ${this.name}`);
+    }
 }
 
 
@@ -39,11 +41,19 @@ itDepartment.printEmployeeInformation();
 
 class AccountingDepartment extends Department {
     private lastReport: string;
-    constructor(id:string, public reports: string[]) {
+    private static accountingInstance: AccountingDepartment;
+    private constructor(id:string, public reports: string[]) {
         super(id, 'Accounting');
         this.lastReport = reports[0];
     }
 
+    static getAccountingInstance() {
+        if(this.accountingInstance) {
+            return this.accountingInstance;
+        }
+        this.accountingInstance = new AccountingDepartment('d2', []);
+        return this.accountingInstance;
+    }
     get mostRecentReport() {
         if (this.lastReport) {
             return this.lastReport;
@@ -71,16 +81,23 @@ class AccountingDepartment extends Department {
     printReports() {
         console.log(this.reports)
     }
+
+    describe(this: AccountingDepartment) {
+        console.log(`Accounting Department (${this.id}): ${this.name}`);
+    }
 }
 
 
 const employeeOne = Department.createEmployee('John');
 console.log("employeeOne", employeeOne + Department.fiscalYear);
 
-const accountingDepartment = new AccountingDepartment('a1', []);
-accountingDepartment.mostRecentReport = 'Valid value report';
-accountingDepartment.addEmployee('Ben');
-accountingDepartment.addReport('Something went wrong');
-accountingDepartment.printReports();
-accountingDepartment.printEmployeeInformation();
-console.log(accountingDepartment.mostRecentReport);
+const accountingDepartment = AccountingDepartment.getAccountingInstance();
+if (accountingDepartment) {
+    accountingDepartment.mostRecentReport = 'Valid value report';
+    accountingDepartment.addEmployee('Ben');
+    accountingDepartment.addReport('Something went wrong');
+    accountingDepartment.printReports();
+    accountingDepartment.printEmployeeInformation();
+    accountingDepartment.describe();
+    console.log(accountingDepartment.mostRecentReport);
+}
