@@ -1,4 +1,4 @@
-function add(n1: number, n2: number) {
+function add2Numbers(n1: number, n2: number) {
     return n1 + n2;
 }
 
@@ -11,13 +11,13 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
     cb(result);
 }
 
-printSomeResult(add(5, 12))
+printSomeResult(add2Numbers(5, 12))
 
-let combineValues: (x: number, y: number) => number;
+let comValues: (x: number, y: number) => number;
 
-combineValues = add;
+comValues = add2Numbers;
 
-console.log("combineValues"+combineValues(8, 8));
+console.log("combineValues"+comValues(8, 8));
 
 addAndHandle(10, 20, (result) => {
     console.log('Result addAndHandle: ' + result);
