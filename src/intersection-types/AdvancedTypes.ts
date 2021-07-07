@@ -22,6 +22,9 @@ type Numeric = number | boolean;
 
 type Universal = SomethingCombined & Numeric; //here the intersection is numeric
 
+//FUNCTION OVERLOAD
+function addCombinedTypes(a: string, b: string): string;
+function addCombinedTypes(a: number, b: number): number;
 //TYPE GUARDS
 function addCombinedTypes(a: SomethingCombined, b: SomethingCombined) {
     if(typeof a === 'string' || typeof b === 'string') {
@@ -29,6 +32,11 @@ function addCombinedTypes(a: SomethingCombined, b: SomethingCombined) {
     }
     return a + b;
 }
+
+const resultNumber = addCombinedTypes(1, 5);
+const resultString = addCombinedTypes('Anna', 'Backer');
+resultString.split(' ');
+
 
 type UnknownEmployee = Employee | Admin;
 
@@ -112,3 +120,32 @@ const userInputElement1 = document.getElementById('user-input');
 if(userInputElement1) {
     (userInputElement1 as HTMLInputElement).value = 'Hi there';
 }
+
+//INDEX PROPERTIES
+
+interface ErrorContainer {
+    [propertyName: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+    email: 'Not a valid email address',
+    1: 'Not a valid text message',
+    username: 'Not a valid username',
+}
+
+//OPTIONAL CHAINING
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: {
+        title: 'CEO',
+        description: 'My own company'
+    }
+};
+console.log('user title: ', fetchedUserData?.job?.title)
+
+
+//NULLISH COALESCING
+const userInputData = '';
+//?? THIS MEANS IF IT IS NULL OR UNDIFINED
+const storedUserInputData = userInputData ?? 'DEFAULT';
